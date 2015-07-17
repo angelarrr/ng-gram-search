@@ -95,3 +95,20 @@ input[type="submit"]:hover {
 .images-container img {
 	width: 100%;
 }
+
+.photos {
+	transition: all 2s ease-in;
+}
+
+.ng-enter.photos {
+	opacity: 0;
+}
+
+.ng-enter.ng-enter-active.photos {
+	opacity: 1;
+}
+
+.ng-enter-stagger.photos {
+	-webkit-transition-delay: 1s;
+	transition-delay: 2s; 
+}

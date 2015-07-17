@@ -46,7 +46,7 @@ app.controller('instaController', ['$scope', '$http', '$q', '$timeout', function
 			})
 			.success(function(result) {
 				instaSearch().then(function(){
-					console.log('success');
+					// console.log('success');
 					$scope.results = result.data;
 
 					if ($scope.results.length===0) {
@@ -55,11 +55,12 @@ app.controller('instaController', ['$scope', '$http', '$q', '$timeout', function
 						$scope.instaSearchMsg = 'We found ' + $scope.results.length + ' images for ' + $scope.tag + '.';
 					}
 
+					$scope.tag = null; // clear input field
 				});
 			})
 			.error(function(result) {
 				instaSearch().then(function(){
-					console.log("error");
+					// console.log("error");
 					$scope.instaSearchMsg = 'Something went wrong! Please try again!';
 				});
 			});
