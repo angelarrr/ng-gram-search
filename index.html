@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="instaApp" ng-controller="instaController">
 <head>
 	<meta charset="UTF-8">
 	<title>Instagram Searcher</title>
+	<!-- Stylesheet and font -->
 	<link rel="stylesheet" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Ruda:400,700,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<header>
 		<img src="img/ng-instagram.png"  alt="Instagram Searcher">
 		<div class="input-container">
-			<form name="instaForm" novalidate ng-submit="">
-				<input type="text" placeholder="enter a tag to search" /><input type="submit" />
+			<form name="instaForm" novalidate ng-submit="submit()">
+				<input type="text" placeholder="enter a tag to search" ng-model="tag" required /><input type="submit" />
 			</form>
 		</div>
+		<div class="error">
+			<span ng-if="instaForm.$submitted && instaForm.tag.$error.required">Please enter a search tag above!</span>
+		</div>
 	</header>
+
+	<section class="results-container">
+		<div class="search-message">
+		</div>
+	</section>
+
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.3.16/angular-animate.js"></script>
+	
+	<script src="js/app.js"></script>
 	
 </body>
 </html>

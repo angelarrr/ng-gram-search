@@ -1,7 +1,24 @@
 body {
 	text-align: center;
+	font-family: 'Ruda', sans-serif;
 }
 
 header {
 	margin-top: 3em;
+}
+
+input[type="text"] {
+	padding: 1em;
+	border: solid 1px gray;
+	margin: 1em;
+	width: 25%;
+}
+
+input[type="text"]:focus {
+	border: solid 1px red;
+}
+
+input[type="submit"] {
+	padding: 1em;
+	border: solid 1px gray;
 }
