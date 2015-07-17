@@ -18,7 +18,7 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 	};
 
 	function instaSearch() {
-		$scope.instaSearchMsg = "Searching Instagram for photos tagged with " + $scope.tag;
+		$scope.instaSearchMsg = "Searching Instagram for photos tagged with " + $scope.tag + "...";
 		return wait().then(function() {
 			$scope.instaSearchMsg = "";
 		});
@@ -26,11 +26,12 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 
 	// submit function
 	$scope.submit = function() {
-		
 		// if form is valid after submit
 		if($scope.instaForm.$valid) {
 			console.log("submit");
 			$scope.instaForm.$setPristine();
+			$scope.instaForm.$setUntouched();
+
 			// query endpoint and parameters
 			var url = 'https://api.instagram.com/v1/tags/' + $scope.tag + '/media/recent';
 			var request = {
@@ -45,7 +46,7 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 			})
 			.success(function(result) {
 				instaSearch().then(function(){
-					console.log('Success');
+					console.log('success');
 					$scope.results = result.data;
 
 					if ($scope.results.length===0) {
@@ -58,12 +59,11 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 				});
 			})
 			.error(function(result) {
-				instaSearch().then(function(){
-					$scope.instaSearchMsg = 'Something went wrong! Please try again!';
-				});
+				console.log("error");
 			});
 		} else {
 			$scope.results = [];
+			$scope.instaSearchMsg = "";
 		}
 	};
 }]);

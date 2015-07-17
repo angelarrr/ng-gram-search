@@ -5,6 +5,7 @@
 	<title>Instagram Searcher</title>
 	<!-- Stylesheet and font -->
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/normalize.css">
 	<link href='http://fonts.googleapis.com/css?family=Ruda:400,700,900' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -21,13 +22,15 @@
 		</div>
 	</header>
 
-	<section class="results-container">
+	<section class="results-container" ng-show="show">
 		<div class="search-message">
 			{{instaSearchMsg}}
 		</div>
 
-		<div class="images-container" ng-repeat="result in results" ng-show="show">
-			<a href="{{result.link}}" target="_blank"><img ng-src="{{result.images.low_resolution.url}}"></a>
+		<div class="content">
+			<div class="images-container" ng-repeat="result in results">
+				<a href="{{result.link}}" target="_blank"><img ng-src="{{result.images.low_resolution.url}}"></a>
+			</div>
 		</div>
 	</section>
 
