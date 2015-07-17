@@ -12,11 +12,12 @@
 		<img src="img/ng-instagram.png"  alt="Instagram Searcher">
 		<div class="input-container">
 			<form name="instaForm" novalidate ng-submit="submit()">
-				<input type="text" placeholder="enter a tag to search" ng-model="tag" required /><input type="submit" />
+				<input type="text" name="tag" placeholder="enter a tag to search" ng-model="tag" required /><input type="submit" />
+			
+				<div>
+					<span class="error" ng-if="instaForm.$submitted && instaForm.tag.$error.required">Please enter a search tag above!</span>
+				</div>
 			</form>
-		</div>
-		<div class="error">
-			<span ng-if="instaForm.$submitted && instaForm.tag.$error.required">Please enter a search tag above!</span>
 		</div>
 	</header>
 
