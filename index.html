@@ -22,9 +22,11 @@
 
 	<section class="results-container">
 		<div class="search-message">
+			{{ instaSearchMsg }}
 		</div>
 
-		<div class="images-container">
+		<div class="images-container" ng-repeat="result in results" ng-cloak>
+			<a href="{{result.link}}" target="_blank"><img ng-src="{{result.images.low_resolution.url}}"></a>
 		</div>
 	</section>
 

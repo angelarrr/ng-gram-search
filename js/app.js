@@ -2,12 +2,31 @@ var app = angular.module('instaApp', ['ngAnimate'])
 
 app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function($scope, $http, $q, $timeout) {
 
+	// create promise for 2 second message
+	function wait() {
+		var defer = $q.defer();
+		// Simulating doing some asynchronous operation
+		setTimeout(function() {
+		defer.resolve();
+		}, 2000);
+
+		return defer.promise;
+	};
+
+	// searching instagram msg
+	function instaSearch() {
+		$scope.instaSearchMsg = "Searching Instagram for photos tagged with " + $scope.tag;
+		wait().then(function() {
+			$scope.instaSearchMsg = "";
+		});
+	};
+
 	// submit function
 	$scope.submit = function() {
 		// if form is valid
 		if($scope.instaForm.$valid) {
-			console.log("submit");
-			$scope.submitted="true";
+			// console.log("submit");
+			instaSearch();
 		}
 
 		// query endpoint and parameters
@@ -22,8 +41,9 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 			url: url,
 			params: request
 		})
-		.success(function(){
+		.success(function(result){
 			console.log("success");
+			$scope.results = result.data;
 		})
 		.error(function(){
 			console.log("error");
