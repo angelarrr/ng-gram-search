@@ -1,10 +1,9 @@
 var app = angular.module('instaApp', ['ngAnimate'])
 
-app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function($scope, $timeout, $q, $http) {
+app.controller('instaController', ['$scope', '$http', '$q', '$timeout', function($scope, $http, $q, $timeout) {
 
 	$scope.results = [];
 	$scope.show = false;
-	$scope.instaSearchMsg = "";
 
 	// create promise for 2 second message
 	function wait() {
@@ -31,6 +30,7 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 			console.log("submit");
 			$scope.instaForm.$setPristine();
 			$scope.instaForm.$setUntouched();
+			$scope.show = true;
 
 			// query endpoint and parameters
 			var url = 'https://api.instagram.com/v1/tags/' + $scope.tag + '/media/recent';
@@ -52,14 +52,16 @@ app.controller('instaController', ['$scope', '$timeout', '$q', '$http', function
 					if ($scope.results.length===0) {
 						$scope.instaSearchMsg = 'No images matching ' + $scope.tag +' were found.';
 					} else {
-						$scope.show = true;
 						$scope.instaSearchMsg = 'We found ' + $scope.results.length + ' images for ' + $scope.tag + '.';
 					}
 
 				});
 			})
 			.error(function(result) {
-				console.log("error");
+				instaSearch().then(function(){
+					console.log("error");
+					$scope.instaSearchMsg = 'Something went wrong! Please try again!';
+				});
 			});
 		} else {
 			$scope.results = [];

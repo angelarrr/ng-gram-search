@@ -66,13 +66,14 @@ header {
 input[type="text"] {
 	padding: 0.5em;
 	border: none;
+	border-bottom: dotted 1px red;
 	margin-right: 0;
 	margin-bottom: 2em;
 	width: 20%;
 }
 
 input[type="text"]:focus {
-	border: solid 1px red;
+	outline: 0;
 }
 
 input[type="submit"] {
@@ -86,7 +87,7 @@ input[type="submit"]:hover {
 }
 
 .images-container {
-	width: 30%;
+	width: 20%;
 	padding: 0.5em;
 	display: inline-block;
 }
