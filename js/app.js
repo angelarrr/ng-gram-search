@@ -8,7 +8,7 @@ app.controller('instaController', ['$scope', '$http', '$q', '$timeout', function
 	// create promise for 2 second message
 	function wait() {
 		var defer = $q.defer();
-		// Simulating doing some asynchronous operation
+		// Simulating doing some asynchronous operation...
 		setTimeout(function() {
 			defer.resolve();
 		}, 2000);
@@ -27,7 +27,7 @@ app.controller('instaController', ['$scope', '$http', '$q', '$timeout', function
 	$scope.submit = function() {
 		// if form is valid after submit
 		if($scope.instaForm.$valid) {
-			console.log("submit");
+			// clear form
 			$scope.instaForm.$setPristine();
 			$scope.instaForm.$setUntouched();
 			$scope.show = true;
@@ -46,21 +46,19 @@ app.controller('instaController', ['$scope', '$http', '$q', '$timeout', function
 			})
 			.success(function(result) {
 				instaSearch().then(function(){
-					// console.log('success');
 					$scope.results = result.data;
 
 					if ($scope.results.length===0) {
 						$scope.instaSearchMsg = 'No images matching ' + $scope.tag +' were found.';
 					} else {
-						$scope.instaSearchMsg = 'We found ' + $scope.results.length + ' images for ' + $scope.tag + '.';
+						$scope.instaSearchMsg = 'We found ' + $scope.results.length + ' image(s) for ' + $scope.tag + '.';
 					}
-
-					$scope.tag = null; // clear input field
+					// clear input field
+					$scope.tag = null;
 				});
 			})
 			.error(function(result) {
 				instaSearch().then(function(){
-					// console.log("error");
 					$scope.instaSearchMsg = 'Something went wrong! Please try again!';
 				});
 			});

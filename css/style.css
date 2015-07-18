@@ -109,6 +109,6 @@ input[type="submit"]:hover {
 }
 
 .ng-enter-stagger.photos {
-	-webkit-transition-delay: 1s;
+	-webkit-transition-delay: 2s;
 	transition-delay: 2s; 
 }
