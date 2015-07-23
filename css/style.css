@@ -66,7 +66,7 @@ header {
 input[type="text"] {
 	padding: 0.5em;
 	border: none;
-	border-bottom: dotted 1px red;
+	border-bottom: dotted 1px #568dba;
 	margin-right: 0;
 	margin-bottom: 2em;
 	width: 20%;
@@ -79,17 +79,38 @@ input[type="text"]:focus {
 input[type="submit"] {
 	padding: 0.5em;
 	border: none;
-	background-color: red;
+	background-color: #568dba;
 }
 
 input[type="submit"]:hover {
 	background-color: white;
 }
 
-.images-container {
-	width: 20%;
-	padding: 0.5em;
-	display: inline-block;
+@media only screen
+	and (min-device-width: 20em)
+	and (-webkit-min-device-pixel-ratio: 2) {
+	.images-container {
+		width: 80%;
+		padding: 0.5em;
+	}
+}
+
+/* tablet */
+@media screen and (min-width: 40em) {
+	.images-container {
+		width: 40%;
+		padding: 0.5em;
+		display: inline-block;
+	}
+}
+
+/* desktop */
+@media screen and (min-width: 64em) {
+	.images-container {
+		width: 20%;
+		padding: 0.5em;
+		display: inline-block;
+	}
 }
 
 .images-container img {
